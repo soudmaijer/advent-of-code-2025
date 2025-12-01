@@ -27,7 +27,7 @@ fun countZeroAfterSteps(list: CircularList<Int>, steps: Steps, direction: Direct
 }
 
 /**
- * Count number of times we hit position 0 on each step in the iteration in the given direction.
+ * Count number of times we hit position 0 on each step of the iteration in the given direction.
  */
 fun countZeroAfterEachStep(list: CircularList<Int>, steps: Steps, direction: Direction): Int {
     var count = 0
