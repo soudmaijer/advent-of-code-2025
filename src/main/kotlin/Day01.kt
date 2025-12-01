@@ -9,11 +9,10 @@ fun part1() {
         val trimmed = line.trim()
         val steps = trimmed.substring(1).toInt()
         when(trimmed.first()) {
-            'L' -> list.stepBack(steps)
-            'R' -> list.stepForward(steps)
+            'L' -> if(list.stepBack(steps) == 0) password++ // stepBack() returns current position
+            'R' -> if(list.stepForward(steps) == 0) password++ // stepForward() returns current position
             else -> throw IllegalArgumentException("Invalid step $trimmed")
         }
-        if(list.currentPosition() == 0) password++
     }
 
     println("Part 1 - Password: $password")
