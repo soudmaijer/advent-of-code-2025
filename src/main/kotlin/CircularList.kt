@@ -29,6 +29,16 @@ class CircularList<T>(private val list: List<T>) {
     }
 
     /**
+     * Move the number of steps in the specified direction.
+     */
+    fun step(direction: Direction, steps: Int): Int {
+        return when(direction) {
+            Direction.FORWARD -> stepForward(steps)
+            Direction.BACK -> stepBack(steps)
+        }
+    }
+
+    /**
      * Steps forward for the given number of steps and returns new (current) position.
      */
     fun stepForward(steps: Int = 1): Int {
@@ -70,5 +80,20 @@ class CircularList<T>(private val list: List<T>) {
             throw IllegalStateException("Should not happen!")
         }
         return currentPosition
+    }
+}
+
+enum class Direction(private val direction: Char) {
+    BACK('L'),
+    FORWARD('R');
+
+    companion object {
+        fun from(direction: Char): Direction {
+            return when (direction) {
+                BACK.direction -> BACK
+                FORWARD.direction -> FORWARD
+                else -> throw IllegalArgumentException()
+            }
+        }
     }
 }
