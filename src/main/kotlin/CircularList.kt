@@ -1,3 +1,8 @@
+/**
+ * CircularList allows for continuously stepping over the items in the list by either stepping forward or backward.
+ * When stepping forward, if it hits the end of the list the next step will resume at the first position of the list
+ * When stepping backward, if it hits the beginning of the list the next step will resume at last position of the list.
+ */
 class CircularList<T>(private val list: List<T>) {
     private var currentPosition = 0
 
@@ -10,14 +15,14 @@ class CircularList<T>(private val list: List<T>) {
     }
 
     /**
-     * Returns the elements at the currentPosition.
+     * Returns the element at the currentPosition.
      */
     fun currentElement(): T {
         return list[currentPosition]
     }
 
     /**
-     * Returns the elements at the currentPosition.
+     * Returns the current position.
      */
     fun currentPosition(): Int {
         return currentPosition
