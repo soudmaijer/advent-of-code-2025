@@ -1,10 +1,12 @@
 import kotlin.io.path.Path
 import kotlin.io.path.forEachLine
 
+typealias Steps = Int
+
 /**
  * Process the input file and invoke the counter function for each line.
  */
-fun inputIterator(count: (CircularList<Int>, Int, Direction) -> Int): Int {
+fun inputIterator(count: (CircularList<Int>, Steps, Direction) -> Int): Int {
     val list = CircularList((0..99).toList()).apply { moveToPosition(50) }
     var counter = 0
 
@@ -20,14 +22,14 @@ fun inputIterator(count: (CircularList<Int>, Int, Direction) -> Int): Int {
 /**
  * Count number of times we hit position 0 after the specified number of steps in the given direction.
  */
-fun countZeroAfterSteps(list: CircularList<Int>, steps: Int, direction: Direction): Int {
+fun countZeroAfterSteps(list: CircularList<Int>, steps: Steps, direction: Direction): Int {
     return if (list.step(direction, steps) == 0) 1 else 0
 }
 
 /**
  * Count number of times we hit position 0 on each step in the iteration in the given direction.
  */
-fun countZeroAfterEachStep(list: CircularList<Int>, steps: Int, direction: Direction): Int {
+fun countZeroAfterEachStep(list: CircularList<Int>, steps: Steps, direction: Direction): Int {
     var count = 0
     repeat(steps) {
         count += countZeroAfterSteps(list, steps = 1, direction = direction)
