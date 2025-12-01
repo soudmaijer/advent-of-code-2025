@@ -39,7 +39,7 @@ class CircularList<T>(private val list: List<T>) {
             currentPosition += steps
         }
         else if( currentPosition + steps >= list.size) {
-            currentPosition = (currentPosition + steps) % list.size
+            currentPosition = (currentPosition + steps).mod(list.size)
         }
         else {
             throw IllegalStateException("Should not happen!")
@@ -57,11 +57,11 @@ class CircularList<T>(private val list: List<T>) {
         if(list.size <= 1) {
             currentPosition = 0
         }
-        else if(currentPosition - (steps % list.size) >= 0 ) {
-            currentPosition -= (steps % list.size)
+        else if(currentPosition - (steps.mod(list.size)) >= 0 ) {
+            currentPosition -= (steps.mod(list.size))
         }
         else if( currentPosition - steps < 0) {
-            currentPosition = list.size - ((steps - currentPosition) % list.size)
+            currentPosition = list.size - ((steps - currentPosition).mod(list.size))
         }
         else {
             throw IllegalStateException("Should not happen!")
