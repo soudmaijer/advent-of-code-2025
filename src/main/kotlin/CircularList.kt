@@ -54,8 +54,6 @@ class CircularList<T>(private val list: List<T>) {
      * Steps back for the given number of steps and returns new (current) position.
      */
     fun stepBack(steps: Int = 1): Int {
-        val oldPosition = currentPosition
-
         if(list.size <= 1) {
             currentPosition = 0
         }
@@ -71,7 +69,6 @@ class CircularList<T>(private val list: List<T>) {
         if(currentPosition() == list.size || currentPosition() < 0) {
             throw IllegalStateException("Should not happen!")
         }
-
         return currentPosition
     }
 }
