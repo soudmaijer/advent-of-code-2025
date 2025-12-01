@@ -1,37 +1,38 @@
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.io.path.Path
 import kotlin.io.path.forEachLine
 
 /**
  * Process the input file and invoke the counter function for each line.
  */
-fun inputIterator(count: (CircularList<Int>, Int, Direction, AtomicInteger) -> Unit): AtomicInteger {
+fun inputIterator(count: (CircularList<Int>, Int, Direction) -> Int): Int {
     val list = CircularList((0..99).toList()).apply { moveToPosition(50) }
-    val password = AtomicInteger(0)
+    var counter = 0
 
     Path("src/main/resources/day-01-input.txt").forEachLine { line ->
         val trimmed = line.trim()
         val steps = trimmed.substring(1).toInt()
         val direction = Direction.from(trimmed.first())
-        count(list, steps, direction, password)
+        counter += count(list, steps, direction)
     }
-    return password
+    return counter
 }
 
 /**
  * Count number of times we hit position 0 after the specified number of steps in the given direction.
  */
-fun countZeroAfterSteps(list: CircularList<Int>, steps: Int, direction: Direction, counter: AtomicInteger) {
-    if (list.step(direction, steps) == 0) counter.incrementAndGet()
+fun countZeroAfterSteps(list: CircularList<Int>, steps: Int, direction: Direction): Int {
+    return if (list.step(direction, steps) == 0) 1 else 0
 }
 
 /**
  * Count number of times we hit position 0 on each step in the iteration in the given direction.
  */
-fun countZeroAfterEachStep(list: CircularList<Int>, steps: Int, direction: Direction, counter: AtomicInteger) {
+fun countZeroAfterEachStep(list: CircularList<Int>, steps: Int, direction: Direction): Int {
+    var count = 0
     repeat(steps) {
-        countZeroAfterSteps(list, steps = 1, direction = direction, counter = counter)
+        count += countZeroAfterSteps(list, steps = 1, direction = direction)
     }
+    return count
 }
 
 fun day1a() {
