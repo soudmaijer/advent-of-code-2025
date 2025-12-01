@@ -10,7 +10,8 @@ fun part1() {
         val steps = trimmed.substring(1).toInt()
         when(trimmed.first()) {
             'L' -> list.stepBack(steps)
-            else -> list.stepForward(steps)
+            'R' -> list.stepForward(steps)
+            else -> throw IllegalArgumentException("Invalid step $trimmed")
         }
         if(list.currentPosition() == 0) password++
     }
@@ -31,11 +32,12 @@ fun part2() {
                     if(list.stepBack() == 0) password++ // stepBack() returns current position
                 }
             }
-            else -> {
+            'R' -> {
                 while (steps-- > 0) {
                     if(list.stepForward() == 0) password++ // stepForward() returns current position
                 }
             }
+            else -> throw IllegalArgumentException("Invalid step $trimmed")
         }
     }
 
