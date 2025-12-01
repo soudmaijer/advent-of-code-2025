@@ -19,14 +19,14 @@ fun inputIterator(count: (CircularList<Int>, Int, Direction, AtomicInteger) -> U
 }
 
 /**
- * Count number of times we hit position 0 after the specified number of steps.
+ * Count number of times we hit position 0 after the specified number of steps in the given direction.
  */
 fun countZeroAfterSteps(list: CircularList<Int>, steps: Int, direction: Direction, counter: AtomicInteger) {
     if (list.step(direction, steps) == 0) counter.incrementAndGet()
 }
 
 /**
- * Count number of times we hit position 0 on each step in the iteration.
+ * Count number of times we hit position 0 on each step in the iteration in the given direction.
  */
 fun countZeroAfterEachStep(list: CircularList<Int>, steps: Int, direction: Direction, counter: AtomicInteger) {
     repeat(steps) {
